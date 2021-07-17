@@ -28,3 +28,8 @@ def getInput(inputList):
     packetInterval = 1 / packetsPerSecond  # inverse of frequency is period ("interval")
     
     return server, packetTimeout, packetPayload, packetCount, packetInterval
+
+def pingAndAppend(server0, packetTimeout0, packetPayload0, container):
+    result = pp.ping(server0, timeout=packetTimeout0, payload=packetPayload0, count=1)._responses[0]
+    print("Appending Result")
+    container.append(result)

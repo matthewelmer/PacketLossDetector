@@ -10,16 +10,14 @@ Usage: PacketLossDetector.py <server IP>(optional) <testDuration> (optional) <pa
 
 
 if __name__ == "__main__":
-    pingScheduler = sched.scheduler(time.time, time.sleep)
-
-    # pp.ping('8.8.8.8', verbose=True)
-
+    # pingScheduler = sched.scheduler(time.time, time.sleep)
     server, packetTimeout, packetPayload, packetCount, packetInterval = PLDfunctions.getInput(sys.argv)
 
-    results = pp.executor.ResponseList()
+    results = pp.ping(server, timeout=packetTimeout, count=packetCount, interval=packetInterval, payload=packetPayload)
 
-    result = pp.ping(server, timeout=packetTimeout, payload=packetPayload, count=1)._responses[0]
-
-    results.append(result)
+    # pingScheduler.enter(0, 1, PLDfunctions.pingAndAppend, (server, packetTimeout, packetPayload, results))
+    # for i in range(packetCount - 1):
+    #     pingScheduler.enter(packetInterval, 1, PLDfunctions.pingAndAppend, (server, packetTimeout, packetPayload, results))
+    # pingScheduler.run()
 
     print(results)

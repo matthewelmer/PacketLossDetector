@@ -8,18 +8,18 @@ import PLDfunctions
 Usage: PacketLossDetector.py <server IP>(optional) <testDuration> (optional) <packetsPerSecond>(optional)
 """
 
-pingScheduler = sched.scheduler(time.time, time.sleep)
 
-# pp.ping('8.8.8.8', verbose=True)
+if __name__ == "__main__":
+    pingScheduler = sched.scheduler(time.time, time.sleep)
 
-server, packetTimeout, packetPayload, packetCount, packetInterval = PLDfunctions.getInput(sys.argv)
+    # pp.ping('8.8.8.8', verbose=True)
 
-results = pp.executor.ResponseList()
+    server, packetTimeout, packetPayload, packetCount, packetInterval = PLDfunctions.getInput(sys.argv)
 
-result = pp.ping(server, timeout=packetTimeout, payload=packetPayload, count=1)._responses[0]
+    results = pp.executor.ResponseList()
 
-results.append(result)
+    result = pp.ping(server, timeout=packetTimeout, payload=packetPayload, count=1)._responses[0]
 
+    results.append(result)
 
-
-print(results)
+    print(results)
